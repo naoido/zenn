@@ -1,5 +1,5 @@
 ---
-title: "LINE Botで感情分析を実装"
+title: "AWS + LINE Botで感情分析を実装"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["LINE", "AWS", "Lambda"]
