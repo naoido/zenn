@@ -13,10 +13,15 @@ Botの画面はこんな感じです
 ![サンプル](/images/happiness-demo.png)
 
 ## 構成図
+### サービス全体の構成図
 ![構成図](/images/happiness-structure.png)
 S3に画像やWebサイトを置いて、バックエンドをLambdaで実装しています。
 今回は小規模かつ短期・高リクエストが予想されるのでDynamoDBではなくElastiCacheを採用しています。
 API GatewayではRestAPIはもちろん、リアルタイムでユーザーデータを反映させるためにWebsocketでも使用してます。
+### AWSリソース図
+![構成図](/images/happiness-aws-structure.png)
+今回小規模なためprivateサブネットは作らず、全てパブリックサブネットに置いて料金を抑えてます。
+パブリックサブネットに置いた際にLambdaがネットワークに接続できないのでElasticIPを直でつけてます。
 
 # Lambdaの実装
 今回はコールドスタートができるだけ起きてほしくないので、単一のLambdaで全てを処理しています。
