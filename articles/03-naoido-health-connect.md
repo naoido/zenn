@@ -1,5 +1,5 @@
 ---
-title: "[Flutter] GoogleFitからHealthConnect移行手順📄"
+title: "[Flutter] GoogleFitAPIからHealthConnectAPIへの移行手順📄"
 emoji: "🚶‍♀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["flutter", "android"]
@@ -33,11 +33,11 @@ url_launcher: ^6.3.1
 permission_handler: ^11.3.1
 ```
 
-# GoogleFitとHealthConnectの違い
+# GoogleFitAPIとHealthConnectAPIの違い
 :::message
-HealthConnectとGoogleFitにはいくつかの違いがあるので、この記事に載っていないところは各自で詳細を調べていただけますと幸いです。
+HealthConnectAPIとGoogleFitAPIにはいくつかの違いがあるので、この記事に載っていないところは各自で詳細を調べていただけますと幸いです。
 :::
-例として、HealthConnectでは最大30日前までしか取得できません。
+例として、HealthConnectAPIでは最大30日前までしか取得できません。
 https://developer.android.com/health-and-fitness/guides/health-connect/develop/aggregate-data?hl=ja#read-restriction
 
 # 手順
@@ -122,7 +122,7 @@ const url = "https://play.google.com/store/apps/details?id=com.google.android.ap
 }
 ```
 
-## 3. HealthConnectの利用申請
+## 3. HealthConnectAPIの利用申請
 :::message
 従来のGoogleFitAPIとは違い、Googleアカウントの認証を必要としないため、
 OAuthの申請は不要になりました！神！
@@ -132,6 +132,6 @@ https://developer.android.com/health-and-fitness/guides/health-connect/publish/d
 
 # 最後に
 GoogleFitAPIのサポート終了が残り4ヶ月となりましたので、そろそろ重い腰を上げて修正する必要があったので作成しました。
-従来のGoogleFitに比べ手順が少なく済み、個人的にはありな変更かなとも思っています。
+従来のGoogleFitAPIに比べ手順が少なく済み、個人的にはありな変更かなとも思っています。
 移行する際のご参考になれば幸いです。
 もしこの記事で間違えている部分などあればコメントいただけますと助かります。
