@@ -7,6 +7,9 @@ published: true
 ---
 
 # はじめに
+:::message
+今回の変更はGoogleFitアプリ自体が無くなるのではなく、GoogleFitなどで歩数をHealthConnectに保存し、その保存したデータをHealthConnectAPIを使って取り出すというフローに変わる点が重要です。
+:::
 2025/06/30にGoogleFitAPIのサポートが終了するのを受け、今更ですがGoogleFitAPIからHealthConnectへの移行した手順をまとめましたので共有します。
 <br>
 Google公式が出している移行ガイドも置いておきます。
