@@ -3,11 +3,11 @@ title: "[Flutter] GoogleFitからHealthConnect移行手順📄"
 emoji: "🚶‍♀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["flutter", "android"]
-published: false
+published: true
 ---
 
 # はじめに
-2025/06/30にGoogleFitのサポートが終了するのを受け、今更ですがGoogleFitからHealthConnectへの移行した手順をまとめましたので共有します。
+2025/06/30にGoogleFitAPIのサポートが終了するのを受け、今更ですがGoogleFitAPIからHealthConnectへの移行した手順をまとめましたので共有します。
 <br>
 Google公式が出している移行ガイドも置いておきます。
 https://developer.android.com/health-and-fitness/guides/health-connect/migrate/migration-guide?hl=ja
@@ -52,7 +52,31 @@ https://developer.android.com/health-and-fitness/guides/health-connect/develop/a
     <queries>
         <package android:name="com.google.android.apps.fitness" />
 +       <package android:name="com.google.android.apps.healthdata" />
++       <intent>
++           <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
++       </intent>
     </queries>
+        <intent-filter>
++                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
++                <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
++                <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+        </intent-filter>
+    <activity>
+
+    </activity>
+
+    <application>
++        <activity-alias
++           android:name="ViewPermissionUsageActivity"
++           android:exported="true"
++           android:targetActivity=".MainActivity"
++           android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
++           <intent-filter>
++               <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
++               <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
++           </intent-filter>
++        </activity-alias>
+    </application>
  </manifest>
 ```
 
@@ -86,7 +110,7 @@ if (isHealthConnectAvailable || isGoogleFitAvailable) {
 
     print("Healthの情報が取得可能になりました！！");
     if (isGoogleFitAvailable) {
-        // GoogleFitがサポート終了する旨を伝える処理
+        // GoogleFitApiがサポート終了する旨を伝える処理
     }
     // 以下お好きなロジックを実装
 } else {
@@ -100,14 +124,14 @@ const url = "https://play.google.com/store/apps/details?id=com.google.android.ap
 
 ## 3. HealthConnectの利用申請
 :::message
-従来のGoogleFitとは違い、Googleアカウントの認証を必要としないため、
-OAuthの申請などは不要になりました！神！
+従来のGoogleFitAPIとは違い、Googleアカウントの認証を必要としないため、
+OAuthの申請は不要になりました！神！
 :::
 申請方法などはこちらに詳しく書いてあります。
 https://developer.android.com/health-and-fitness/guides/health-connect/publish/declare-access?hl=ja
 
 # 最後に
-GoogleFitのサポート終了が残り4ヶ月となりましたので、そろそろ重い腰を上げて修正する必要があったので作成しました。
+GoogleFitAPIのサポート終了が残り4ヶ月となりましたので、そろそろ重い腰を上げて修正する必要があったので作成しました。
 従来のGoogleFitに比べ手順が少なく済み、個人的にはありな変更かなとも思っています。
 移行する際のご参考になれば幸いです。
 もしこの記事で間違えている部分などあればコメントいただけますと助かります。
