@@ -84,7 +84,7 @@ https://developer.android.com/health-and-fitness/guides/health-connect/develop/a
 ```
 
 ## 2. コードの変更
-今回はGoogleFitをギリギリまで残すために切り分けてます。
+今回はGoogleFitのみでの動作をギリギリまで残すために切り分けてます。
 
 ```dart
 final types = [HealthDataType.STEPS];
